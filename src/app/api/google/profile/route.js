@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { createClient } from '@supabase/supabase-js';
 
+// Force dynamic rendering for API routes that use request data
+export const dynamic = 'force-dynamic';
+
 // Initialize Supabase client
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
