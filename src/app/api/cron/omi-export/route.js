@@ -12,6 +12,7 @@ const supabaseAdmin = createClient(
 export const dynamic = 'force-dynamic';
 export const maxDuration = 300; // 5 minutes in seconds (max for hobby plan)
 export const revalidate = 0;
+
 export const runtime = 'nodejs';
 
 // Vercel Cron configuration - updated to run every hour
