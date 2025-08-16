@@ -1,6 +1,15 @@
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Inicializar Resend solo si existe la API key
+let resend = null;
+if (process.env.RESEND_API_KEY) {
+  try {
+    resend = new Resend(process.env.RESEND_API_KEY);
+  } catch (error) {
+    console.warn("Failed to initialize Resend:", error.message);
+    resend = null;
+  }
+}
 
 export const ImportCompleteEmailGoogle = ({ documents }) => {
   return (
@@ -72,6 +81,16 @@ export async function POST(request) {
         },
         { status: 400 }
       );
+    }
+
+    // Check if Resend is available
+    if (!resend) {
+      console.warn("Resend not configured - skipping email notification");
+      return Response.json({
+        success: true,
+        message: "Import completed successfully. Email notifications are disabled.",
+        warning: "RESEND_API_KEY not configured"
+      });
     }
 
     if (platform === "notion") {
