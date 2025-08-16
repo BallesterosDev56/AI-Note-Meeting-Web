@@ -7,14 +7,6 @@
     {
       "path": "/api/cron/process-emails",
       "schedule": "0 6 * * *"  
-    },
-    {
-      "path": "/api/cron/omi-conversations-import",
-      "schedule": "0 12 * * *" 
-    },
-    {
-      "path": "/api/cron/omi-memories-import",
-      "schedule": "0 18 * * *" 
     }
   ]
 }
